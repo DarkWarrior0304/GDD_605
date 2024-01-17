@@ -11,16 +11,13 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsGround, Player;
 
-    public float health;
-
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
     public float walkPointRange;
 
     //States
-    public float sightRange;
-    public bool playerInSightRange;
+    bool isAggro = false;
 
     private void Awake()
     {
@@ -31,11 +28,11 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        //Check for sight and attack range
-        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
-
-        //if (!playerInSightRange) Patroling();
-        //if (playerInSightRange) ChasePlayer();
+        
+        if (isAggro)
+        {
+            ChasePlayer();
+        }
     }
 
     public void Patroling()
@@ -70,5 +67,9 @@ public class EnemyAI : MonoBehaviour
         agent.speed = 12;
     }
 
-   
+    public void OnDamageTaken()
+    {
+        isAggro = true;
+    }
+
 }
