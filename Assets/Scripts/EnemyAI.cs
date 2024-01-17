@@ -7,6 +7,8 @@ public class EnemyAI : MonoBehaviour
 
     public Transform player;
 
+    EnemyFOV fov;
+
     public LayerMask whatIsGround, Player;
 
     public float health;
@@ -23,19 +25,20 @@ public class EnemyAI : MonoBehaviour
     private void Awake()
     {
         player = GameObject.Find("player").transform;
+        fov = GetComponent<EnemyFOV>();
         agent = GetComponent<NavMeshAgent>();
     }
 
     private void Update()
     {
         //Check for sight and attack range
-        playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
+        //playerInSightRange = Physics.CheckSphere(transform.position, sightRange, Player);
 
-        if (!playerInSightRange) Patroling();
-        if (playerInSightRange) ChasePlayer();
+        //if (!playerInSightRange) Patroling();
+        //if (playerInSightRange) ChasePlayer();
     }
 
-    private void Patroling()
+    public void Patroling()
     {
         if (!walkPointSet) SearchWalkPoint();
 
@@ -49,7 +52,7 @@ public class EnemyAI : MonoBehaviour
         if (distanceToWalkPoint.magnitude < 1f)
             walkPointSet = false;
     }
-    private void SearchWalkPoint()
+    public void SearchWalkPoint()
     {
         //Calculate random point in range
         float randomZ = Random.Range(-walkPointRange, walkPointRange);
@@ -61,9 +64,11 @@ public class EnemyAI : MonoBehaviour
             walkPointSet = true;
     }
 
-    private void ChasePlayer()
+    public void ChasePlayer()
     {
         agent.SetDestination(player.position);
         agent.speed = 12;
     }
+
+   
 }
