@@ -62,16 +62,6 @@ public class Weapon : MonoBehaviour
             Reload();
         }
 
-        if (Input.GetKeyDown(reloadKey) && currentAmmo <= 0)
-        {
-            CannotReload();
-        }
-
-        if (Input.GetKeyDown(reloadKey) && currentMag == magSize)
-        {
-            CannotReload();
-        }
-
         UIManager.UpdateAmmo(currentAmmo);
         UIManager.UpdateMag(currentMag);
     }
@@ -110,7 +100,7 @@ public class Weapon : MonoBehaviour
         
         if(Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out thingWeHit, range))
         {
-            CreateHitVFX(thingWeHit);
+            //CreateHitVFX(thingWeHit);
             EnemyHealth Target = thingWeHit.transform.GetComponent<EnemyHealth>();
             if (Target == null) { return; }
             Target.TakeDamage(damage);
@@ -121,19 +111,25 @@ public class Weapon : MonoBehaviour
         }
     }
 
-    private void CreateHitVFX(RaycastHit thingWeHit)
-    {
+    //private void CreateHitVFX(RaycastHit thingWeHit)
+    //{
         //GameObject impact = Instantiate(hitVFX, thingWeHit.point, Quaternion.identity);
-        GameObject impact = Instantiate(hitVFX, thingWeHit.point, Quaternion.LookRotation(thingWeHit.normal));
-        Destroy(impact, 0.1f);
-    }
+        //GameObject impact = Instantiate(hitVFX, thingWeHit.point, Quaternion.LookRotation(thingWeHit.normal));
+        //Destroy(impact, 0.1f);
+    //}
 
     private void Reload()
     {
-        currentMag = magSize;
-        currentAmmo -= magSize;
-        UIManager.UpdateAmmo(currentAmmo);
-        UIManager.UpdateMag(currentMag);
+        if (currentAmmo > 0 && currentMag < magSize)
+        {
+            currentMag = magSize;
+            currentAmmo -= magSize;
+            UIManager.UpdateAmmo(currentAmmo);
+            UIManager.UpdateMag(currentMag);
+        }
+        else
+            CannotReload();
+        
     }
 
     private void CannotReload()
