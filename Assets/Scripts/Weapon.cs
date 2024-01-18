@@ -15,14 +15,10 @@ public class Weapon : MonoBehaviour
     [SerializeField] Camera playerCam;
     [SerializeField] ParticleSystem muzzleFlash;
     [SerializeField] GameObject hitVFX;
-    [SerializeField] Ammo ammo;
-    [SerializeField] AmmoType ammoType;
     public float maxAmmo;
     public float currentAmmo;
     public float magSize;
     public float currentMag;
-
-    AmmoCount ac;
 
     private UIManager UIManager;
 
@@ -135,5 +131,11 @@ public class Weapon : MonoBehaviour
     private void CannotReload()
     {
         print("Cannot Reload");
+    }
+
+    public void AmmoPickUp()
+    {
+        currentAmmo = maxAmmo;
+        UIManager.UpdateAmmo(currentAmmo);
     }
 }

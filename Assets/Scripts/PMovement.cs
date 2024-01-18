@@ -25,18 +25,11 @@ public class PMovement : MonoBehaviour
     public float walkSpeed;
     public float sprintSpeed;
 
-    [Header("Crouching")]
-    public float crouchSpeed;
-    public float crouchYScale;
-    public float crouchXScale;
-    public float crouchZScale;
-    public float startYScale;
-    public float startXScale;
-    public float startZScale;
+    
 
     [Header("Keybinds")]
     public KeyCode sprintKey = KeyCode.LeftShift;
-    public KeyCode crouchKey = KeyCode.C;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -48,10 +41,6 @@ public class PMovement : MonoBehaviour
         standingHeight = controller.height;
 
         moveSpeed = walkSpeed;
-
-        startYScale = transform.localScale.y;
-        startXScale = transform.localScale.x;
-        startZScale = transform.localScale.z;
         
     }
 
@@ -100,24 +89,5 @@ public class PMovement : MonoBehaviour
             moveSpeed = walkSpeed;
         }
 
-        // start crouching
-        if (Input.GetKeyDown(crouchKey))
-        {
-            transform.localScale = new Vector3(crouchXScale, crouchYScale, crouchZScale);
-            rb.AddForce(Vector3.down * 5f, ForceMode.Impulse);
-
-            moveSpeed = crouchSpeed;
-
-            print("Crouching");
-        }
-
-        // stop crouching
-        if (Input.GetKeyUp(crouchKey))
-        {
-            transform.localScale = new Vector3(startXScale, startYScale, startZScale);
-
-            moveSpeed = walkSpeed;
-
-        }
     }
 }
