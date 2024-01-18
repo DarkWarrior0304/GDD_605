@@ -1471,7 +1471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 100
   damage: 33
-  coolDownTimer: 0.5
+  coolDownTimer: 0.1
   playerCam: {fileID: 963194227}
   muzzleFlash: {fileID: 957155164}
   hitVFX: {fileID: 4938158685012930043, guid: 756736c0a548aa244905c2ef08d2c7ec, type: 3}
@@ -16686,7 +16686,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 30
   damage: 60
-  coolDownTimer: 0.5
+  coolDownTimer: 0.6
   playerCam: {fileID: 963194227}
   muzzleFlash: {fileID: 534281030}
   hitVFX: {fileID: 4938158685012930043, guid: 756736c0a548aa244905c2ef08d2c7ec, type: 3}
@@ -18147,7 +18147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   range: 70
   damage: 16
-  coolDownTimer: 0.5
+  coolDownTimer: 0.2
   playerCam: {fileID: 963194227}
   muzzleFlash: {fileID: 1760276694}
   hitVFX: {fileID: 4938158685012930043, guid: 756736c0a548aa244905c2ef08d2c7ec, type: 3}
