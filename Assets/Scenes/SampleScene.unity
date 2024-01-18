@@ -1458,6 +1458,11 @@ MonoBehaviour:
   hitVFX: {fileID: 4938158685012930043, guid: 756736c0a548aa244905c2ef08d2c7ec, type: 3}
   ammo: {fileID: 1963432974}
   ammoType: 2
+  maxAmmo: 120
+  currentAmmo: 0
+  magSize: 30
+  currentMag: 0
+  reloadKey: 114
 --- !u!1 &423413681 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8783096491426017932, guid: eff87b85776eca543853f49e1f9f50af,
@@ -2449,6 +2454,11 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 78d56aa4e3cef0c45afab8fbe3931bad, type: 2}
+    - target: {fileID: -865958956759444930, guid: eff87b85776eca543853f49e1f9f50af,
+        type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -814656772219384679, guid: eff87b85776eca543853f49e1f9f50af,
         type: 3}
       propertyPath: m_Layer
@@ -10266,6 +10276,84 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentWeapon: 0
+--- !u!1 &945891346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 945891349}
+  - component: {fileID: 945891348}
+  - component: {fileID: 945891347}
+  m_Layer: 5
+  m_Name: Ammo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &945891347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945891346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 0
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &945891348
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945891346}
+  m_CullTransparentMesh: 0
+--- !u!224 &945891349
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 945891346}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2838, y: 1.2838, z: 1.2838}
+  m_Children: []
+  m_Father: {fileID: 1521653477}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -82, y: 26}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &954302782 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -6260713033260089086, guid: eff87b85776eca543853f49e1f9f50af,
@@ -16349,14 +16437,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4d238ff5d2a674697f46addd7a954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
-  damage: 33
+  range: 30
+  damage: 60
   coolDownTimer: 0.5
   playerCam: {fileID: 963194227}
   muzzleFlash: {fileID: 534281030}
   hitVFX: {fileID: 4938158685012930043, guid: 756736c0a548aa244905c2ef08d2c7ec, type: 3}
   ammo: {fileID: 1963432974}
   ammoType: 1
+  maxAmmo: 24
+  currentAmmo: 0
+  magSize: 6
+  currentMag: 0
+  reloadKey: 114
 --- !u!1 &1348335829 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1979078170871298165, guid: eff87b85776eca543853f49e1f9f50af,
@@ -17128,6 +17221,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490903988}
   m_CullTransparentMesh: 0
+--- !u!1 &1493101606
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1493101609}
+  - component: {fileID: 1493101608}
+  - component: {fileID: 1493101607}
+  m_Layer: 5
+  m_Name: Mag
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1493101607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493101606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_FontSize: 20
+    m_FontStyle: 0
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 40
+    m_Alignment: 4
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: New Text
+--- !u!222 &1493101608
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493101606}
+  m_CullTransparentMesh: 0
+--- !u!224 &1493101609
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1493101606}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.2838, y: 1.2838, z: 1.2838}
+  m_Children: []
+  m_Father: {fileID: 1521653477}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -142, y: 26}
+  m_SizeDelta: {x: 160, y: 30}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1516294205 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -7646072443481669004, guid: eff87b85776eca543853f49e1f9f50af,
@@ -17197,6 +17368,7 @@ GameObject:
   - component: {fileID: 1521653476}
   - component: {fileID: 1521653475}
   - component: {fileID: 1521653474}
+  - component: {fileID: 1521653478}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -17277,6 +17449,8 @@ RectTransform:
   m_Children:
   - {fileID: 1258107040}
   - {fileID: 1281298774}
+  - {fileID: 945891349}
+  - {fileID: 1493101609}
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17285,6 +17459,20 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1521653478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1521653473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c33c01983b77fe048b44728e9b066236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoText: {fileID: 945891347}
+  magText: {fileID: 1493101607}
 --- !u!1 &1535702399 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5171412243713090757, guid: eff87b85776eca543853f49e1f9f50af,
@@ -17691,14 +17879,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a4d238ff5d2a674697f46addd7a954e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 100
-  damage: 33
+  range: 70
+  damage: 16
   coolDownTimer: 0.5
   playerCam: {fileID: 963194227}
   muzzleFlash: {fileID: 1760276694}
   hitVFX: {fileID: 4938158685012930043, guid: 756736c0a548aa244905c2ef08d2c7ec, type: 3}
   ammo: {fileID: 1963432974}
   ammoType: 0
+  maxAmmo: 64
+  currentAmmo: 0
+  magSize: 16
+  currentMag: 0
+  reloadKey: 114
 --- !u!1 &1632981822 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5172411934543533823, guid: eff87b85776eca543853f49e1f9f50af,

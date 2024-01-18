@@ -17,6 +17,17 @@ public class Weapon : MonoBehaviour
     [SerializeField] GameObject hitVFX;
     [SerializeField] Ammo ammo;
     [SerializeField] AmmoType ammoType;
+    public float maxAmmo;
+    public float currentAmmo;
+    public float magSize;
+    public float currentMag;
+
+    AmmoCount ac;
+
+    private UIManager UIManager;
+
+    [Header("Keybinds")]
+    public KeyCode reloadKey = KeyCode.R;
 
     bool canShoot = true;
 
@@ -30,7 +41,12 @@ public class Weapon : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        currentAmmo = maxAmmo;
+        currentMag = magSize;
+
+        UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        UIManager.UpdateAmmo(currentAmmo);
+        UIManager.UpdateMag(currentMag);
     }
 
     // Update is called once per frame
@@ -40,19 +56,45 @@ public class Weapon : MonoBehaviour
         {
             StartCoroutine(Shoot());
         }
+
+        if(Input.GetKeyDown(reloadKey) && currentAmmo > 0)
+        {
+            Reload();
+        }
+
+        if (Input.GetKeyDown(reloadKey) && currentAmmo <= 0)
+        {
+            CannotReload();
+        }
+
+        if (Input.GetKeyDown(reloadKey) && currentMag == magSize)
+        {
+            CannotReload();
+        }
+
+        UIManager.UpdateAmmo(currentAmmo);
+        UIManager.UpdateMag(currentMag);
     }
 
     private IEnumerator Shoot()
     {
         canShoot = false;
 
-        if(ammo.GetAmmoAmount(ammoType) > 0)
+        //if(ammo.GetAmmoAmount(ammoType) > 0)
+        //{
+            //ProcessRayCast();
+            //PlayMuzzleFlash();
+            //ammo.ReduceAmmo(ammoType);
+        //}
+
+        if (currentMag > 0)
         {
             ProcessRayCast();
             PlayMuzzleFlash();
-            ammo.ReduceAmmo(ammoType);
+            currentMag--;
+            UIManager.UpdateMag(currentMag);
         }
-        
+
         yield return new WaitForSeconds(coolDownTimer);
         canShoot = true;
     }
@@ -84,5 +126,18 @@ public class Weapon : MonoBehaviour
         //GameObject impact = Instantiate(hitVFX, thingWeHit.point, Quaternion.identity);
         GameObject impact = Instantiate(hitVFX, thingWeHit.point, Quaternion.LookRotation(thingWeHit.normal));
         Destroy(impact, 0.1f);
+    }
+
+    private void Reload()
+    {
+        currentMag = magSize;
+        currentAmmo -= magSize;
+        UIManager.UpdateAmmo(currentAmmo);
+        UIManager.UpdateMag(currentMag);
+    }
+
+    private void CannotReload()
+    {
+        print("Cannot Reload");
     }
 }

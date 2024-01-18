@@ -7,11 +7,15 @@ public class WeaponSwitcher : MonoBehaviour
 {
 
     [SerializeField] int currentWeapon = 0;
-    
+
+    private UIManager UIManager;
+    Weapon wp;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        UIManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        wp = GetComponent<Weapon>();
     }
 
     // Update is called once per frame
@@ -33,6 +37,7 @@ public class WeaponSwitcher : MonoBehaviour
             else
             {
                 currentWeapon++;
+                //UIManager.UpdateAmmo(currentAmmo);
             }
         }
 
@@ -45,6 +50,7 @@ public class WeaponSwitcher : MonoBehaviour
             else
             {
                 currentWeapon --;
+                //UIManager.UpdateAmmo(currentAmmo);
             }
         }
     }
