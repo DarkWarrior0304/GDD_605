@@ -5000,8 +5000,6 @@ MonoBehaviour:
   playerCam: {fileID: 0}
   muzzleFlash: {fileID: 534281030}
   hitVFX: {fileID: 0}
-  ammo: {fileID: 0}
-  ammoType: 0
   maxAmmo: 24
   currentAmmo: 0
   magSize: 6

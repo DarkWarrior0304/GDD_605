@@ -10,6 +10,9 @@ public class UIManager : MonoBehaviour
 
     [SerializeField]
     private Text magText;
+
+    [SerializeField]
+    private Text score;
     public void UpdateAmmo(float count)
     {
         ammoText.text = "/ " + count;
@@ -18,5 +21,10 @@ public class UIManager : MonoBehaviour
     public void UpdateMag(float count)
     {
         magText.text = " " + count;
+    }
+
+    public void UpdateScore(float count)
+    {
+        score.text = "Score: " + count;
     }
 }

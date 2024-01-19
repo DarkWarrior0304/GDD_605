@@ -6,8 +6,7 @@ public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] float enemyHealth = 100f;
     
-    
-   public void TakeDamage(float damage)
+    public void TakeDamage(float damage)
    {
         GetComponent<EnemyAI>().OnDamageTaken();
         enemyHealth -= damage;

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -24,18 +25,30 @@ public class PlayerHealth : MonoBehaviour
     private void Update()
     {
         healthBar.value = currentHealth;
+
+        if(currentHealth <= 0)
+        {
+            PlayerDeath();
+        }
     }
 
     public void OnTriggerEnter(Collider Col)
     {
-        if (Col.gameObject.tag == "Enemy" && enemy.GetComponent<EnemyAI>().isAggro)
+        if (Col.gameObject.tag == "Enemy")
         {
             currentHealth -= enemy.GetComponent<EnemyAttack>().damage;
         }
 
-        if (Col.gameObject.tag == "Large Enemy" && largeEnemy.GetComponent<EnemyAI>().isAggro)
+        if (Col.gameObject.tag == "Large Enemy")
         {
             currentHealth -= enemy.GetComponent<EnemyAttack>().damage;
         }
+    }
+
+    public void PlayerDeath()
+    {
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        SceneManager.LoadScene("DeathScreen");
     }
 }
