@@ -16,8 +16,11 @@ public class EnemyAI : MonoBehaviour
     bool walkPointSet;
     public float walkPointRange;
 
+    public float timeBetweenAttacks;
+
     //States
-    bool isAggro = false;
+    bool alreadyAttacked;
+    public bool isAggro = false;
 
     private void Awake()
     {
