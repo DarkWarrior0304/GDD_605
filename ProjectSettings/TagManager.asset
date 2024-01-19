@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - flashlight
   - Reach
+  - Large Enemy
   layers:
   - Default
   - TransparentFX

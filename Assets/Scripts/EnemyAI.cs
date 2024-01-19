@@ -11,6 +11,9 @@ public class EnemyAI : MonoBehaviour
 
     public LayerMask whatIsGround, Player;
 
+    [SerializeField] float walkSpeed;
+    [SerializeField] float chaseSpeed;
+
     //Patroling
     public Vector3 walkPoint;
     bool walkPointSet;
@@ -46,7 +49,7 @@ public class EnemyAI : MonoBehaviour
             agent.SetDestination(walkPoint);
 
         Vector3 distanceToWalkPoint = transform.position - walkPoint;
-        agent.speed = 6;
+        agent.speed = walkSpeed;
 
         //Walkpoint reached
         if (distanceToWalkPoint.magnitude < 1f)
@@ -67,7 +70,7 @@ public class EnemyAI : MonoBehaviour
     public void ChasePlayer()
     {
         agent.SetDestination(player.position);
-        agent.speed = 12;
+        agent.speed = chaseSpeed;
     }
 
     public void OnDamageTaken()
